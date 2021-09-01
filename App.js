@@ -1,21 +1,63 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
+import {Assets}  from './components/assets'
+import { Portfolio } from './components/portfolio';
+import { Market } from './components/market';
 
-export default function App() {
+const Tab = createMaterialBottomTabNavigator();
+
+function MyTabs() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Tab.Navigator
+      initialRouteName="Portfolio"
+      activeColor="#02B9C0"
+      barStyle={{ backgroundColor: '#000F16', paddingTop:3, paddingBottom:5 }}
+      labelStyle={{ fontSize: 10 }}
+    >
+      
+      <Tab.Screen
+        name="Assets"
+        component={Assets}
+        options={{
+          tabBarLabel: 'Assets',
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="coins" color={color} size={26} />
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="Portfolio"
+        component={Portfolio}
+        options={{
+          tabBarLabel: 'Portfolio',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="home" color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Market"
+        component={Market}
+        options={{
+          tabBarLabel: 'Market',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="finance" color={color} size={26} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  return (
+    <NavigationContainer>
+      <MyTabs />
+    </NavigationContainer>    
+  );
+}
