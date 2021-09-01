@@ -15,6 +15,7 @@ function MyTabs() {
     <Tab.Navigator
       initialRouteName="Portfolio"
       activeColor="#02B9C0"
+      // inactiveColor="#fff"
       barStyle={{ backgroundColor: '#000F16', paddingTop:3, paddingBottom:5 }}
       labelStyle={{ fontSize: 10 }}
     >

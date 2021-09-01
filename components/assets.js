@@ -1,36 +1,47 @@
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View, Platform, ScrollView} from 'react-native';
+import { SafeAreaView } from "react-native";
 
 export function Assets() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#000F16' }}>
-      <Text style={{color:'#fff'}}>Assets</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        <Text style={styles.headingStyle}>Assets</Text>
+        <View style={styles.cardStyle}>        
+        </View>
+        <View style={styles.cardStyle}>
+        </View>
+        <View style={styles.cardStyle}>
+        </View>
+        <View style={styles.cardStyle}>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
-// import { StatusBar } from 'expo-status-bar';
-// import React from 'react';
-// import { StyleSheet, Text, View, Image } from 'react-native';
 
-// export default function App() {
-//   return (
-//     <View style={styles.container}>
-//       {/* <Image
-//         style={{}}
-//         source={require('./assets/icon.png')}
-//       /> */}
-//       <Text>Open up App.js to start working on your app!</Text>
-//       <StatusBar style="auto" />
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#000F16',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#000F16',
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    // alignItems: 'center',
+    // justifyContent: 'center',
+  },
+  headingStyle: {
+    fontSize: 25,
+    color:'#02B9C0',
+    padding:32,
+    fontWeight:'bold'
+  },
+  cardStyle:{
+    backgroundColor:'#001C23',
+    marginLeft:32,
+    height:100,
+    width:350,
+    borderRadius:7,
+    marginBottom:20
+  }
+});
