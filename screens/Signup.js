@@ -35,7 +35,7 @@ import { Octicons, Ionicons } from '@expo/vector-icons';
 // Datetimepicker
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-const Signup = () => {
+const Signup = ({navigation}) => {
   const [hidePassword, setHidePassword] = useState(true);
   const [show, setShow] = useState(false);
   const [date, setDate] = useState(new Date(2000, 0, 1));
@@ -79,6 +79,7 @@ const Signup = () => {
           onSubmit={(values) => {
             values = { ...values, dateOfBirth: dob };
             console.log(values);
+            navigation.navigate('Login');
           }}
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
@@ -94,7 +95,7 @@ const Signup = () => {
               />
               <MyTextInput
                 label="Email Address"
-                placeholder="manshrut@gmail.com"
+                placeholder="manshrut@gmail.co"
                 placeholderTextColor={darkLight}
                 onChangeText={handleChange('email')}
                 onBlur={handleBlur('email')}
@@ -147,7 +148,7 @@ const Signup = () => {
               <Line />
               <ExtraView>
                 <ExtraText>Already have an account? </ExtraText>
-                <TextLink>
+                <TextLink onPress={()=> navigation.navigate('Login')}>
                   <TextLinkContent>Login</TextLinkContent>
                 </TextLink>
               </ExtraView>
