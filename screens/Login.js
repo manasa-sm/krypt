@@ -25,7 +25,7 @@ import {
   TextLinkContent,
   Colors,
 } from './../components/styles';
-import { KeyboardAvoidingView, View } from 'react-native';
+//import { KeyboardAvoidingView, View } from 'react-native';
 
 //colors
 const { darkLight, brand, primary } = Colors;
@@ -39,7 +39,7 @@ import Welcome from './Welcome';*/
 
 //import * Google from 'expo-google-app-auth';
 
-const Login = ({}) => {
+const Login = ({navigation}) => {
   const [hidePassword, setHidePassword] = useState(true);
   return (
     
@@ -51,7 +51,7 @@ const Login = ({}) => {
           initialValues={{ email: '', password: '' }}
           onSubmit={(values) => {
             console.log(values);
-//            navigation.navigate()        //Home screen here                                                                   <---------------------------------------------------
+            navigation.navigate("Signup");                                                     // <---------------------------------------------------
           }}
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
@@ -89,8 +89,8 @@ const Login = ({}) => {
                 <ButtonText google={true}>Sign in with Google</ButtonText>
               </StyledButton>
               <ExtraView>
-                <ExtraText>Don't have an account already? </ExtraText>
-                <TextLink> 
+                <ExtraText>Don't have an account ? </ExtraText>
+                <TextLink onPress={()=> navigation.navigate("Signup")  }> 
                   <TextLinkContent>Signup</TextLinkContent>
                 </TextLink>
               </ExtraView>
