@@ -1,1 +1,5 @@
-hello its me
+RootStack.js has sign up and login 
+u might need to download the react-navigate files again  because whenver i restart they reset somehow ill remove the links now
+the initialroutename(this thing keeps resetting so u might need to download the modules again from react natove stack website) has to be the opening screen (in RootStack)
+same problem with .navigate() function it could be that they are not getting downloaded in my comp
+https://reactnavigation.org/docs/navigating link for the modules
