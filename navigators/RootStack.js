@@ -1,14 +1,16 @@
-import React from 'react'
-import { NavigationContainer } from '@react-navigation/native';
-//import { createNativeStackNavigator } from '@react-navigation/native-stack';                  Import this its getting corruptrd in my laptop im not able to install it
-import Login from './../screens/Login';
+import  React from 'react';
+//Nav
+import  {NavigationContainer}  from '@react-navigation/native';
+import  {createStackNavigator}  from '@react-navigation/native-stack';             
+
 import Signup from './../screens/Signup';
+import Login from './../screens/Login';
 import {Colors} from './../components/styles';
 const{primary,tertiary}=Colors;
 
-//const Stack = createNativeStackNavigator();      /////////////////////////////////////////////////////////////////
+const Stack = createStackNavigator();
 
-/*const RootStack = () => {
+const RootStack = () => {
     return(
             <NavigationContainer>
                 <Stack.Navigator
@@ -32,4 +34,5 @@ const{primary,tertiary}=Colors;
                 </Stack.Navigator>
             </NavigationContainer>
     );
-}*/
+}
+export default RootStack;
