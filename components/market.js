@@ -20,7 +20,6 @@ export function Market() {
       .finally(() => setLoading(false));
   }, []);
 
-  var RandomNumber = Math.floor(Math.random() * 10000) + 100 ;
 
   const Item = ({ url, asset_id}) => (  
   <View style={[styles.cardStyle, {flexDirection:'row', flexWrap:'wrap'}]}>
@@ -28,7 +27,7 @@ export function Market() {
       source={{uri: url }}
       style={{width: 40, height: 40, margin:31}} />
     <Text style={{ fontSize: 18, color: 'white', marginTop:39,fontWeight:"700"}}>{asset_id}</Text>
-  <Text style={{ fontSize: 18, color: 'white', margin:39,fontWeight:"700"}}>Price : {RandomNumber}</Text>
+  <Text style={{ fontSize: 18, color: 'white', margin:39,fontWeight:"700"}}>Price : {Math.floor(Math.random() * 10000) + 100}</Text>
   </View>
 );
 
