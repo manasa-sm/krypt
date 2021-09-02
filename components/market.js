@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Component } from 'react';
 import { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Platform, ScrollView, SafeAreaView, Image, FlatList} from 'react-native';
@@ -7,7 +8,6 @@ import { StyleSheet, Text, View, Platform, ScrollView, SafeAreaView, Image, Flat
 export function Market() {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  console.log(data);
 
   useEffect(() => {
     fetch('https://rest.coinapi.io/v1/assets/icons/50',{
@@ -19,13 +19,16 @@ export function Market() {
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
   }, []);
-  
-  const Item = ({ url, asset_id }) => (
+
+  var RandomNumber = Math.floor(Math.random() * 10000) + 100 ;
+
+  const Item = ({ url, asset_id}) => (  
   <View style={[styles.cardStyle, {flexDirection:'row', flexWrap:'wrap'}]}>
     <Image 
       source={{uri: url }}
       style={{width: 40, height: 40, margin:31}} />
-    <Text style={{ fontSize: 18, color: 'white', marginTop:39,}}>{asset_id}</Text>
+    <Text style={{ fontSize: 18, color: 'white', marginTop:39,fontWeight:"700"}}>{asset_id}</Text>
+  <Text style={{ fontSize: 18, color: 'white', marginLeft:39,fontWeight:"700"}}>{RandomNumber}</Text>
   </View>
 );
 
