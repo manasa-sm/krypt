@@ -148,7 +148,7 @@ const Signup = ({navigation}) => {
               <Line />
               <ExtraView>
                 <ExtraText>Already have an account? </ExtraText>
-                <TextLink onPress={()=> navigation.navigate('Login')}>
+                <TextLink onPress={()=> navigation.navigate('Login')}>      
                   <TextLinkContent>Login</TextLinkContent>
                 </TextLink>
               </ExtraView>
