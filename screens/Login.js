@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { StatusBar } from 'expo-status-bar';
 
 // formik
@@ -25,7 +26,7 @@ import {
   TextLinkContent,
   Colors,
 } from './../components/styles';
-//import { KeyboardAvoidingView, View } from 'react-native';
+import { KeyboardAvoidingView, View } from 'react-native';
 
 //colors
 const { darkLight, brand, primary } = Colors;
@@ -36,11 +37,37 @@ import { Octicons, Fontisto, Ionicons } from '@expo/vector-icons';
 /*keyboard to avoid blocking
 import KeyboardAvoidingWrapper from './../components/KeyboardAvoidingWrapper';
 import Welcome from './Welcome';*/
+const MyTextInput = ({ label, icon, isPassword, hidePassword, setHidePassword, ...props }) => {
+  return (
+    <View>
+      <LeftIcon>
+        <Octicons name={icon} size={30} color={brand} />
+      </LeftIcon>
+      <StyledInputLabel>{label}</StyledInputLabel>
+      <StyledTextInput {...props} />
+      {isPassword && (
+        <RightIcon
+          onPress={() => {
+            setHidePassword(!hidePassword);
+          }}
+        >
+          <Ionicons name={hidePassword ? 'md-eye-off' : 'md-eye'} size={30} color={darkLight} />
+        </RightIcon>
+      )}
+    </View>
+  );
+};
 
-//import * Google from 'expo-google-app-auth';
+
+import * as Google from 'expo-google-app-auth';
 
 const Login = ({navigation}) => {
   const [hidePassword, setHidePassword] = useState(true);
+  const handleGoogleSignin=()=>{
+    con
+  }
+  
+
   return (
     
     <StyledContainer>
@@ -51,7 +78,7 @@ const Login = ({navigation}) => {
           initialValues={{ email: '', password: '' }}
           onSubmit={(values) => {
             console.log(values);
-            navigation.navigate("Signup");                                                     // <---------------------------------------------------
+            navigation.navigate("portfolio")        //Home screen here                                                                   <---------------------------------------------------
           }}
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
@@ -89,9 +116,9 @@ const Login = ({navigation}) => {
                 <ButtonText google={true}>Sign in with Google</ButtonText>
               </StyledButton>
               <ExtraView>
-                <ExtraText>Don't have an account ? </ExtraText>
-                <TextLink onPress={()=> navigation.navigate("Signup")  }> 
-                  <TextLinkContent>Signup</TextLinkContent>
+                <ExtraText>Don't have an account already? </ExtraText>
+                <TextLink onPress={()=> navigation.navigate("Signup")  } > 
+                  <TextLinkContent >Signup</TextLinkContent>
                 </TextLink>
               </ExtraView>
             </StyledFormArea>
@@ -103,7 +130,7 @@ const Login = ({navigation}) => {
   );
 };
 
-const MyTextInput = ({ label, icon, isPassword, hidePassword, setHidePassword, ...props }) => {
+/*const MyTextInput = ({ label, icon, isPassword, hidePassword, setHidePassword, ...props }) => {
   return (
     <View>
       <LeftIcon>
@@ -123,5 +150,5 @@ const MyTextInput = ({ label, icon, isPassword, hidePassword, setHidePassword, .
     </View>
   );
 };
-
+*/
 export default Login;
