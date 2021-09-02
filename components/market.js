@@ -1,24 +1,48 @@
 import * as React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Platform, ScrollView} from 'react-native';
-import { SafeAreaView } from "react-native";
+import { StyleSheet, Text, View, Platform, ScrollView, SafeAreaView, FlatList} from 'react-native';
+import { useEffect, useState } from 'react';
 
 export function Market() {
+    const [isLoading, setLoading] = useState(true);
+    const [data, setData] = useState([]);
+    console.log(data);
+
+    useEffect(() => {
+      fetch('https://rest.coinapi.io//v1/assets/icons/{20}',{
+        method:'GET',
+        headers:{'X-CoinAPI-Key':'308F4A45-D20E-4237-AB87-69A64F29AC95'}
+      })
+        .then((response) => response.json())
+        .then((json) => setData(json))
+        .catch((error) => console.error(error))
+        .finally(() => setLoading(false));
+    }, []);
+
+    const Item = ({ asset_id }) => (
+      <View style={styles.cardStyle}>
+        <Text style={{ fontSize: 18, color: 'green', textAlign: 'center'}}>{asset_id}</Text>
+      </View>
+    );
+
+    const renderItem = ({ item }) => (
+      <Item asset_id={item.asset_id} />
+    );
+
   return (
     <SafeAreaView style={styles.container}>
 
-      <ScrollView>
+      {/* <ScrollView> */}
         <Text style={styles.headingStyle}>Market</Text>
-        {/* <StatusBar style="auto" /> */}
+        <FlatList
+          data={data}
+          renderItem={renderItem}
+          keyExtractor={item => item.asset_id}
+        />
+
         <View style={styles.cardStyle}>
         </View>
-        <View style={styles.cardStyle}>
-        </View>
-        <View style={styles.cardStyle}>
-        </View>
-        <View style={styles.cardStyle}>
-        </View>
-      </ScrollView>
+      {/* </ScrollView> */}
 
     </SafeAreaView>
   );
