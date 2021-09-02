@@ -1,53 +1,50 @@
 import * as React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Platform, ScrollView, SafeAreaView, FlatList} from 'react-native';
 import { useEffect, useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View, Platform, ScrollView, SafeAreaView, Image, FlatList} from 'react-native';
+
 
 export function Market() {
-    const [isLoading, setLoading] = useState(true);
-    const [data, setData] = useState([]);
-    console.log(data);
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+  console.log(data);
 
-    useEffect(() => {
-      fetch('https://rest.coinapi.io//v1/assets/icons/{20}',{
-        method:'GET',
-        headers:{'X-CoinAPI-Key':'308F4A45-D20E-4237-AB87-69A64F29AC95'}
-      })
-        .then((response) => response.json())
-        .then((json) => setData(json))
-        .catch((error) => console.error(error))
-        .finally(() => setLoading(false));
-    }, []);
+  useEffect(() => {
+    fetch('https://rest.coinapi.io/v1/assets/icons/50',{
+      method:'GET',
+      headers:{'X-CoinAPI-Key':'308F4A45-D20E-4237-AB87-69A64F29AC95'}
+    })
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
+  }, []);
+  
+  const Item = ({ url, asset_id }) => (
+  <View style={[styles.cardStyle, {flexDirection:'row', flexWrap:'wrap'}]}>
+    <Image 
+      source={{uri: url }}
+      style={{width: 40, height: 40, margin:31}} />
+    <Text style={{ fontSize: 18, color: 'white', marginTop:39,}}>{asset_id}</Text>
+  </View>
+);
 
-    const Item = ({ asset_id }) => (
-      <View style={styles.cardStyle}>
-        <Text style={{ fontSize: 18, color: 'green', textAlign: 'center'}}>{asset_id}</Text>
-      </View>
-    );
-
-    const renderItem = ({ item }) => (
-      <Item asset_id={item.asset_id} />
-    );
+  const renderItem = ({ item }) => (
+    <Item url={item.url} asset_id={item.asset_id}/>
+  );
 
   return (
     <SafeAreaView style={styles.container}>
 
-      {/* <ScrollView> */}
         <Text style={styles.headingStyle}>Market</Text>
         <FlatList
           data={data}
           renderItem={renderItem}
-          keyExtractor={item => item.asset_id}
+          keyExtractor={item => item.url}
         />
-
-        <View style={styles.cardStyle}>
-        </View>
-      {/* </ScrollView> */}
-
     </SafeAreaView>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -57,12 +54,14 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     // justifyContent: 'center',
   },
+
   headingStyle: {
     fontSize: 25,
     color:'#02B9C0',
     padding:32,
     fontWeight:'bold'
   },
+
   cardStyle:{
     backgroundColor:'#001C23',
     marginLeft:32,
@@ -71,4 +70,4 @@ const styles = StyleSheet.create({
     borderRadius:7,
     marginBottom:20
   },
-});
+}); 
