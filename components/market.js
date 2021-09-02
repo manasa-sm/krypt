@@ -28,7 +28,7 @@ export function Market() {
       source={{uri: url }}
       style={{width: 40, height: 40, margin:31}} />
     <Text style={{ fontSize: 18, color: 'white', marginTop:39,fontWeight:"700"}}>{asset_id}</Text>
-  <Text style={{ fontSize: 18, color: 'white', marginLeft:39,fontWeight:"700"}}>{RandomNumber}</Text>
+  <Text style={{ fontSize: 18, color: 'white', margin:39,fontWeight:"700"}}>Price : {RandomNumber}</Text>
   </View>
 );
 
