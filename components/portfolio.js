@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Platform, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, Platform, ScrollView,Image} from 'react-native';
 import { SafeAreaView } from "react-native";
 
 export function Portfolio() {
@@ -10,27 +10,40 @@ export function Portfolio() {
         <Text style={styles.headingStyle}>Portfolio</Text>
 
         {/* Current Value */}
-        <View style={styles.cardStyle}>
+        <View style={[styles.cardStyle, {flexDirection:'row', flexWrap:'wrap'}]}>
           <Text style={styles.cardFont}>Current Value</Text>
+          <Text style={[styles.cardFont,{color:'#02B9C0', marginTop:40,marginLeft:85 }]}>$75000</Text>
         </View>
 
         {/* Invested Value */}
-        <View style={styles.cardStyle}>
+        <View style={[styles.cardStyle, {flexDirection:'row', flexWrap:'wrap'}]}>
           <Text style={styles.cardFont}>Invested Value</Text>
+          <Text style={[styles.cardFont,{color:'#02B9C0', marginTop:40,marginLeft:85 }]}>$100000</Text>
         </View>
 
         {/* Profit/Loss */}
         <View style={styles.circularCard}>
-          <Text style={styles.circularCardFont}>Profit/Loss</Text>
+          <Text style={styles.circularCardFont}>Loss</Text>
+          <Text style={[styles.cardFont,{color:'#02B9C0', marginLeft:40,marginTop:10}]}>25%</Text>
         </View>
 
         {/* Top Gainer,Top Loser */}
-        <View style={styles.cardStyle}>
+        <View style={[styles.cardStyle, {flexDirection:'row', flexWrap:'wrap'}]}>
           <Text style={styles.cardFont}>Top Gainer</Text>
+          <Image 
+            source={{uri: 'https://s3.eu-central-1.amazonaws.com/bbxt-static-icons/type-id/png_512/63e240f3047f41c791796784bc719f63.png' }}
+            style={{width: 40, height: 40, margin:31}} />
+          <Text style={{color:'#02B9C0',fontSize: 18,
+    textAlign:'center',fontWeight:"700",marginTop:40,marginLeft:30}}>5%</Text>
         </View>
 
-        <View style={styles.cardStyle}>
+        <View style={[styles.cardStyle, {flexDirection:'row', flexWrap:'wrap'}]}>
           <Text style={styles.cardFont}>Top Loser</Text>
+          <Image 
+            source={{uri: 'https://s3.eu-central-1.amazonaws.com/bbxt-static-icons/type-id/png_512/5a8e66d1f2f043fe960f0d81df2dc198.png' }}
+            style={{width: 40, height: 40, margin:31}} />
+          <Text style={{color:'#02B9C0',fontSize: 18,
+    textAlign:'center',fontWeight:"700",marginTop:40,marginLeft:30}}>12%</Text>
         </View>
       </ScrollView>
       
@@ -44,9 +57,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#000F16',
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-    
-    // alignItems: 'center',
-    // justifyContent: 'center',
   },
   headingStyle: {
     fontSize: 25,
