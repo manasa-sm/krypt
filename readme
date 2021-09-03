@@ -1,1 +1,5 @@
-hello its me
+A portfoilo manager app which tracks the loss' and profits of our inverstments in crypto and stocks
+
+>>npm start
+
+working: main branch and auth branch
